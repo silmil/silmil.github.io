@@ -54,12 +54,19 @@
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <button type="reset" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary" onclick="location.href = 'indexlogged.html'">Login</button>
+                        <button type="submit" class="btn btn-primary" id="myButton">Login</button>
                     </div>
                 </div>
             </fieldset>
         </form>
     </div>
+    
+    <script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "indexlogged.html";
+    };
+</script>
+    
 </main
 <footer>
     <div class="container modal-footer">
