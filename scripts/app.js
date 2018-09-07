@@ -7,6 +7,7 @@ $(() => {
 
         this.get('index.html', handlers.getWelcomePage);
         this.get('#/home', handlers.getWelcomePage);
+        this.get('#/', handlers.getWelcomePage);
 
         this.post('#/register', handlers.registerUser);
         this.post('#/login', handlers.loginUser);
@@ -18,7 +19,7 @@ $(() => {
         this.post('#/checkout', handlers.checkout);
 
         this.get('#/overview', handlers.getMyReceipts);
-        this.get('#/receipt/detail/:id', handlers.getReceiptById)
+        this.get('#/receipt/detail/:id', handlers.getReceiptById);
     });
 
     app.run();
