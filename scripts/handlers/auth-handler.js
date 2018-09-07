@@ -8,6 +8,14 @@ handlers.getWelcomePage = function (ctx) {
     })
 };
 
+handlers.getComingSoonPage = function (ctx) {
+    ctx.loadPartials({
+        footer: './templates/common/footer.hbs'
+    }).then(function () {
+        this.partial('./templates/comingSoon.hbs');
+    })
+}
+
 handlers.registerUser = function (ctx) {
     const username = ctx.params.username;
     const password = ctx.params.password;

@@ -6,7 +6,9 @@ $(() => {
         this.use('Handlebars', 'hbs');
 
         this.get('index.html', handlers.getWelcomePage);
-        this.get('#/home', handlers.getWelcomePage);
+//      this.get('#/home', handlers.getWelcomePage);
+        this.get('#/home', handlers.getComingSoonPage);
+
         this.get('#/', handlers.getWelcomePage);
 
         this.post('#/register', handlers.registerUser);
