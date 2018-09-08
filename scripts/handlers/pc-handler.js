@@ -1,16 +1,14 @@
-handlers.getMyReceipts = async function (ctx) {
+handlers.getMyPCs = async function (ctx) {
     const userId = sessionStorage.getItem('userId');
 
-    receiptService.getMyReceipts(userId)
-        .then((allReceipts) => {
-            allReceipts.forEach((e) => {
+    pcService.getMyPCs(userId)
+        .then((allPCs) => {
+            allPCs.forEach((e) => {
                 e.date = new Date(e._kmd.ect).toDateString();
             })
             ctx.username = sessionStorage.getItem('username');
-            ctx.receipts = allReceipts;
-            ctx.totalAll = allReceipts
-                .map((e) => +e.total)
-                .reduce((a, b) => a + b);
+            ctx.pcs = allPCs;
+            ctx.totalAll = 0;
 
             ctx.loadPartials({
                 header: './templates/common/header.hbs',
@@ -23,10 +21,10 @@ handlers.getMyReceipts = async function (ctx) {
         .catch(notify.handleError)
 }
 
-handlers.getReceiptById = function (ctx) {
+handlers.getPCById = function (ctx) {
     const receiptId = ctx.params.id;
 
-    entriesService.getAllByReceiptId(receiptId)
+    entriesService.getAllByPCId(receiptId)
         .then((entries) => {
 
             entries.forEach((e) => {

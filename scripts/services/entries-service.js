@@ -1,6 +1,6 @@
 let entriesService = (() => {
 
-    function getAllByReceiptId(receiptId) {
+    function getAllByPCId(receiptId) {
         const endpoint = `entries?query={"receiptId":"${receiptId}"}`;
 
         return remote.get('appdata', endpoint, 'kinvey')
@@ -19,7 +19,7 @@ let entriesService = (() => {
     }
 
     return {
-        getAllByReceiptId,
+        getAllByPCId,
         create,
         remove
     }

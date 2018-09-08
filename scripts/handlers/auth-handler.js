@@ -16,6 +16,15 @@ handlers.getComingSoonPage = function (ctx) {
     })
 }
 
+handlers.getRegisterPage = function (ctx) {
+    ctx.loadPartials({
+        registerForm: './templates/forms/register-form.hbs',
+        footer: './templates/common/footer.hbs'
+    }).then(function () {
+        this.partial('./templates/registerPage.hbs');
+    })
+}
+
 handlers.registerUser = function (ctx) {
     const username = ctx.params.username;
     const password = ctx.params.password;
@@ -32,7 +41,7 @@ handlers.registerUser = function (ctx) {
             .then((userData) => {
                 auth.saveSession(userData);
                 notify.showInfo("User registration successful.");
-                ctx.redirect('#/editor');
+                ctx.redirect('#/home');
              })
             .catch(notify.handleError);
     }
@@ -46,7 +55,7 @@ handlers.loginUser = function (ctx) {
         .then((userData) => {
             auth.saveSession(userData);
             notify.showInfo("Login successful.");
-            ctx.redirect('#/editor');
+            ctx.redirect('#/home');
         })
         .catch(notify.handleError);
 }

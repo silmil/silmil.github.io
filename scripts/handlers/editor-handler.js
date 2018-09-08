@@ -1,13 +1,13 @@
 handlers.getEditor = async function (ctx) {
     try {
         const userId = sessionStorage.getItem('userId');
-        let [ receipt ] = await receiptService.getActive(userId);
+        let [ receipt ] = await pcService.getActive(userId);
 
         if (!receipt) {
             receipt = await receiptService.create();
         }
 
-        let entries = await entriesService.getAllByReceiptId(receipt._id);
+        let entries = await entriesService.getAllByPCId(receipt._id);
 
         if(entries.length > 0){
             entries.forEach((e) => {
@@ -77,19 +77,3 @@ handlers.deleteEntry = function (ctx) {
         .catch(notify.handleError);
 };
 
-handlers.checkout = function (ctx) {
-    const receiptId = ctx.params.receiptId;
-    const productCount = ctx.params.productCount;
-    const total = ctx.params.total;
-
-    if(productCount === 0){
-        notify.showError("No entries listed")
-    } else {
-        receiptService.checkout(receiptId, productCount, total)
-            .then(() => {
-                notify.showInfo("Ceckout successful");
-                ctx.redirect('#/editor');
-            })
-            .catch(notify.handleError);
-    }
-}
